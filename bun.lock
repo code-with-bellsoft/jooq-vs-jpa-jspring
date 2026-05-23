@@ -8,7 +8,7 @@
         "@iconify-json/logos": "latest",
         "@iconify-json/mdi": "latest",
         "@iconify-json/twemoji": "latest",
-        "@slidev-polls/component": "^0.4.2",
+        "@slidev-polls/component": "^0.5.0",
         "@slidev/cli": "^52.15.2",
         "@slidev/theme-seriph": "latest",
       },
@@ -256,9 +256,9 @@
 
     "@shikijs/vscode-textmate": ["@shikijs/vscode-textmate@10.0.2", "", {}, "sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg=="],
 
-    "@slidev-polls/component": ["@slidev-polls/component@0.4.2", "", { "dependencies": { "@slidev-polls/shared": "0.4.2", "qr-code-styling": "^1.9.2" }, "peerDependencies": { "@slidev/client": "^52.0.0", "vue": "^3.5.0" } }, "sha512-njsIAFXnlYhuDj3iYD/giwKxNksTrZfKrdDWZLVt77iWZfIP0TAWx9u73Y+Ut4PyksVMrv+9tPANiETNIbN+6g=="],
+    "@slidev-polls/component": ["@slidev-polls/component@0.5.0", "", { "dependencies": { "@slidev-polls/shared": "0.5.0", "qr-code-styling": "^1.9.2" }, "peerDependencies": { "@slidev/client": "^52.0.0", "vue": "^3.5.0" } }, "sha512-DVjTSCgxhoELVtfICheE3j+ebS3EjWT0kJGyAXiGPpvhdaLs6mOXXQ4SmblttTzLiX10gIrLUGjHQ/XHenXTtQ=="],
 
-    "@slidev-polls/shared": ["@slidev-polls/shared@0.4.2", "", { "peerDependencies": { "vue": "^3.5.0" } }, "sha512-EDJZHTPRRqi2DaHWmX6h4yH/vJk9h0+9Gzx+0/tRNUtCX8I43P4LRhgSsxZuFaQTTLVltjCBs0E+BFmoT35VMA=="],
+    "@slidev-polls/shared": ["@slidev-polls/shared@0.5.0", "", { "peerDependencies": { "vue": "^3.5.0" } }, "sha512-kACqX4JD24m0poQ/9ESMpV0++J0wTjSP6zV8P7xBKwajoxz2PMt1VlXfxotKnocxvrTgA29uvv11yhXObG3FhQ=="],
 
     "@slidev/cli": ["@slidev/cli@52.15.2", "", { "dependencies": { "@antfu/ni": "^30.1.0", "@antfu/utils": "^9.3.0", "@comark/markdown-it": "^0.3.4", "@iconify-json/carbon": "^1.2.20", "@iconify-json/ph": "^1.2.2", "@iconify-json/svg-spinners": "^1.2.4", "@lillallol/outline-pdf": "^4.0.0", "@shikijs/markdown-it": "^4.0.2", "@shikijs/twoslash": "^4.0.2", "@shikijs/vitepress-twoslash": "^4.0.2", "@slidev/client": "52.15.2", "@slidev/parser": "52.15.2", "@slidev/types": "52.15.2", "@unocss/extractor-mdc": "^66.6.8", "@unocss/reset": "^66.6.8", "@vitejs/plugin-vue": "^6.0.6", "@vitejs/plugin-vue-jsx": "^5.1.5", "ansis": "^4.2.0", "chokidar": "^5.0.0", "cli-progress": "^3.12.0", "connect": "^3.7.0", "fast-deep-equal": "^3.1.3", "fast-glob": "^3.3.3", "get-port-please": "^3.2.0", "global-directory": "^5.0.0", "htmlparser2": "^12.0.0", "is-installed-globally": "^1.0.0", "jiti": "^2.6.1", "katex": "^0.16.45", "local-pkg": "^1.1.2", "lz-string": "^1.5.0", "magic-string": "^0.30.21", "magic-string-stack": "^1.1.0", "markdown-exit": "^1.0.0-beta.9", "markdown-it-footnote": "^4.0.0", "markdown-it-github-alerts": "^1.0.1", "mlly": "^1.8.2", "monaco-editor": "^0.55.1", "obug": "^2.1.1", "open": "^11.0.0", "pdf-lib": "^1.17.1", "picomatch": "^4.0.4", "plantuml-encoder": "^1.4.0", "postcss-nested": "^7.0.2", "pptxgenjs": "^4.0.1", "prompts": "^2.4.2", "public-ip": "^8.0.0", "resolve-from": "^5.0.0", "resolve-global": "^2.0.0", "semver": "^7.7.4", "shiki": "^4.0.2", "shiki-magic-move": "^1.3.0", "sirv": "^3.0.2", "source-map-js": "^1.2.1", "typescript": "^5.9.3", "unhead": "^2.1.13", "unocss": "^66.6.8", "unplugin-icons": "^23.0.1", "unplugin-vue-components": "^32.0.0", "unplugin-vue-markdown": "^30.0.0", "untun": "^0.1.3", "uqr": "^0.1.3", "vite": "^8.0.10", "vite-plugin-inspect": "^11.3.3", "vite-plugin-remote-assets": "^2.1.0", "vite-plugin-static-copy": "^4.1.0", "vite-plugin-vue-server-ref": "^1.0.0", "vitefu": "^1.1.3", "vue": "^3.5.33", "yaml": "^2.8.3", "yargs": "^18.0.0" }, "peerDependencies": { "playwright-chromium": "^1.10.0" }, "optionalPeers": ["playwright-chromium"], "bin": { "slidev": "bin/slidev.mjs" } }, "sha512-sSI1egjYPbXN+wCrN9XrQUZ/JbjOgYGpj0cvGVsjEgQfdiGj4U75sUqWrb9giPWZBF4ZvlREEz7Da2MssPBuig=="],
 
