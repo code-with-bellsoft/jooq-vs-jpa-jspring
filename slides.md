@@ -24,16 +24,13 @@ pollServer: https://polls.asm0dey.site
   <div>Catherine Edelveis</div>
 </div>
 
-<!--
-Opening. Set up boxing metaphor. Two fighters, two persistence philosophies.
--->
 
 ---
 layout: two-cols
 class: text-2xl
 ---
 
-## <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ corner
+## <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> corner
 
 <v-click>
 
@@ -51,9 +48,6 @@ Usually, you **don't need to know SQL**
 
 </v-click>
 
-<!--
-Two opposing philosophies. jOOQ embraces SQL. JPA hides it.
--->
 
 ---
 layout: center
@@ -66,9 +60,6 @@ class: text-center
   WE ARE FIGHTING FOR YOUR FUTURE
 </div>
 
-<!--
-Frame the talk. Audience is picking a stack now.
--->
 
 ---
 layout: section
@@ -98,16 +89,11 @@ public class Supplier {
 }
 ```
 
-<v-click>
 
 - DB assigns primary key on insert
 - Define connections with annotations
 
-</v-click>
 
-<!--
-Annotation-driven mapping. Show declarative style.
--->
 
 ---
 
@@ -126,11 +112,9 @@ public class ProductService {
 }
 ```
 
-<v-click>
 
 Schema generation, SQL generation and execution, DB connection, fetching and mapping — **DONE FOR YOU**
 
-</v-click>
 
 ---
 
@@ -143,11 +127,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 }
 ```
 
-<v-click>
 
 Queries derived from method names
 
-</v-click>
 
 ---
 
@@ -160,9 +142,6 @@ AuthorRecord author =
 author.store();
 ```
 
-<!--
-ActiveRecord pattern. Fetch, mutate, store.
--->
 
 ---
 
@@ -178,9 +157,6 @@ public List<ProductRecord> findBySupplier(Long supplierId) {
 }
 ```
 
-<!--
-Fluent SQL-shaped API. Reads like SQL.
--->
 
 ---
 layout: center
@@ -316,9 +292,6 @@ public List<Product> findByName(String name) {
 }
 ```
 
-<!--
-Product_.name is the metamodel. Refactor renames it. Compiler catches breaks.
--->
 
 ---
 
@@ -376,14 +349,14 @@ return entityManager.createQuery(cq)
 
 # JPA — Query Validation
 
-```java {4}
+```java {all}
 @NamedQuery(
     name = "brokenOrderQuery",
     query = "select o from CustomerOrder o where o.noSuchField = :id"
 )
 ```
 
-```text {5-6}
+```text {all|5-6}
 [INFO] -------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] -------------------------------------------------
@@ -392,9 +365,7 @@ return entityManager.createQuery(cq)
         Could not resolve attribute 'noSuchField' of 'CustomerOrder'
 ```
 
-<!--
-JPQL strings validated at compile time. Build fails on bad field.
--->
+
 
 ---
 
@@ -426,9 +397,6 @@ dsl
   .fetchInto(Product.class)
 ```
 
-<!--
-Path-based access auto-joins. Less verbose than explicit join.
--->
 
 ---
 layout: center
@@ -486,7 +454,7 @@ for (Product product : products) {
 
 # JPA — Fetch with Criteria
 
-```java {3}
+```java {all|3}
 CriteriaQuery<CustomerOrder> cq = cb.createQuery(CustomerOrder.class);
 Root<CustomerOrder> order = cq.from(CustomerOrder.class);
 Fetch<CustomerOrder, OrderItem> items = order.fetch(CustomerOrder_.items);
@@ -495,34 +463,32 @@ cq.select(order)
   .where(cb.equal(order.get(CustomerOrder_.id), orderId));
 ```
 
-<!--
-Force eager fetch on-demand via Criteria.
--->
+<img v-click src="./lamba.png" class="w-1/2 mx-auto" />
 
 ---
 layout: center
 class: text-center
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ verdict
+# jOOQ verdict
 
-<div class="text-3xl font-bold mt-8">
-  YOU WON'T HAVE N+1
-</div>
-<div class="text-3xl mt-4 opacity-80">
-  IF YOU DON'T USE ORM
+
+<div class="relative inline-block">
+  <img src="./problems.png" class="max-h-[70vh]" />
+
+<img
+v-click
+src="./non1.jpg"
+class="absolute top-0 left-0 z-10 w-full h-full object-contain"
+/>
 </div>
 
-<!--
-jOOQ writes SQL directly. No lazy loading surprise.
--->
 
 ---
 layout: center
 class: text-center
 ---
 
-<!-- Replace slug / pollId / questionId with values from backoffice -->
 <PollResults
   slug="jpa-jooq-jspring"
   pollId="d53d36a7-9c53-4363-9473-a6c8f44bcf97"
@@ -551,7 +517,7 @@ class: text-center
 
 ---
 
-# Request payload
+# JPA — Request payload
 
 ```java
 public record OrderEditRequest(
@@ -568,7 +534,7 @@ public record OrderEditRequest(
 
 # JPA — revise order
 
-```java {3|7-8}
+```java {all|3|7-8}
 @Transactional
 public void reviseOrder(Long orderId, OrderEditRequest request) {
     CustomerOrder order = repository.fetchOrderGraphForEdit(orderId);
@@ -580,15 +546,13 @@ public void reviseOrder(Long orderId, OrderEditRequest request) {
                          address.postalCode(), newCountry);
 ```
 
-<!--
-Fetch graph once. Mutate domain methods.
--->
+
 
 ---
 
 # JPA — remove items
 
-```java {7}
+```java {all|7}
 // Remove existing items -> orphanRemoval deletes rows
 List<String> productUpisToRemove = request.productUpisToRemove() == null
         ? List.of()
@@ -603,7 +567,7 @@ for (String productUpi : productUpisToRemove) {
 
 # JPA — add items
 
-```java {9-10}
+```java {all|9-10}
 // Add new items -> cascade persist inserts rows
 Map<Long, Integer> newProducts = request.newProductIdsWithQuantities() == null
         ? Map.of()
@@ -621,7 +585,7 @@ for (Map.Entry<Long, Integer> entry : newProducts.entrySet()) {
 
 # JPA — change quantity
 
-```java {9-13}
+```java {all|9-13}
 // Change quantity of existing items
 Map<String, Integer> quantityUpdates = request.quantityUpdates() == null
         ? Map.of()
@@ -642,7 +606,7 @@ for (Map.Entry<String, Integer> entry : quantityUpdates.entrySet()) {
 
 # JPA — coupon + recalc
 
-```java {3-5|8}
+```java {all|3-5|7,8}
 // Add coupon -> cascade persist
 if (request.couponCode() != null) {
     order.addCoupon(request.couponCode(), request.couponDiscountAmount());
@@ -662,9 +626,9 @@ If something changes in the DB → **Optimistic locking via `@Version`**
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — update address
+# jOOQ — update address
 
-```java {3-9|10-12}
+```java {all|3-9|10-12}
 public void reviseOrder(Long orderId, OrderEditRequest request) {
     // Update shipping address in-place — no order graph needed
     ShipmentAddressRequest address = request.address();
@@ -682,7 +646,7 @@ public void reviseOrder(Long orderId, OrderEditRequest request) {
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — remove items by UPI
+# jOOQ — remove items by UPI
 
 ```java
 // 3. Remove items by UPI
@@ -700,7 +664,7 @@ if (!upisToRemove.isEmpty()) {
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — insert new items
+# jOOQ — insert new items
 
 ```java
 // 4. Insert new items
@@ -723,7 +687,7 @@ if (!newProducts.isEmpty()) {
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — update quantities (CASE)
+# jOOQ — update quantities
 
 ```java
 if (!upisToUpdate.isEmpty()) {
@@ -743,7 +707,7 @@ if (!upisToUpdate.isEmpty()) {
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — delete + update loops
+# jOOQ — delete + update loops
 
 ```java
 if (!upisToDelete.isEmpty()) {
@@ -764,7 +728,7 @@ for (var entry : upisToUpdate) {
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — replace coupon
+# jOOQ — replace coupon
 
 ```java
 // 6. Replace coupon — delete existing, insert new if present
@@ -817,13 +781,12 @@ class: text-center
 
 </v-click>
 
-<!--
-Hibernate has knobs. Use them.
--->
+<img v-click="2" src="./accident.png" class="w-1/2 mx-auto" />
+
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — query cost
+# jOOQ — query cost
 
 - Takes some time to construct jOOQ queries
 - Takes some time to render SQL strings
@@ -832,6 +795,9 @@ Hibernate has knobs. Use them.
 <div class="mt-8 text-xl opacity-90">
   → Use connection pooling
 </div>
+
+<img v-click src="./efishenci.png" class="w-1/2 mx-auto" />
+
 
 ---
 layout: center
@@ -863,23 +829,14 @@ class: text-center
 - DB migration tooling, schema diff checks for DB/entities mismatch
 
 ---
-layout: two-cols
-class: text-center
----
 
-## 😐 mediocre
+## jOOQ
 
-Change DB and hope entities won't go kaboom
+Change your DB incompatibly and see how your application doesn’t even compile. <br/>
+Because it **shouldn’t**.<br/>
+And you don’t need plugins for it!
 
-::right::
-
-## 🎩 classy
-
-Change DB and see application doesn't compile
-
-<!--
-Generated code = guaranteed schema/code alignment.
--->
+<img v-click src="./winnie.png" class="w-1/2 mx-auto" />
 
 ---
 layout: center
@@ -903,7 +860,7 @@ class: text-center
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ Editions
+# jOOQ Editions
 
 | Edition | DBs | Price |
 |---|---|---|
@@ -946,15 +903,6 @@ class: text-center
   questionId="e90ef410-d08b-437f-934d-7bb713d31a13"
 />
 
----
-
-# What we didn't mention
-
-1. Read-side queries
-2. Multiset
-3. Custom SQL operations
-4. Query Validator
-5. Blaze Persistence
 
 ---
 layout: center
@@ -966,6 +914,17 @@ class: text-center
 <div class="mt-8 text-2xl">Watch us — CyberJAR</div>
 
 <div class="mt-8 grid grid-cols-2 gap-8 text-lg opacity-90">
-  <div>Pasha Finkelshteyn</div>
-  <div>Catherine Edelveis</div>
 </div>
+
+
+<img src="./cyberjar.png" class="w-1/2 mx-auto" />
+
+---
+
+# What we didn't mention
+
+1. Read-side queries
+2. Multiset
+3. Custom SQL operations
+4. Query Validator
+5. Blaze Persistence
