@@ -13,6 +13,7 @@
     "@iconify-json/twemoji": "latest",
     "@slidev-polls/component": "^0.5.1",
     "@slidev/cli": "^52.15.2",
+    "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "latest"
   },
   "devDependencies": {

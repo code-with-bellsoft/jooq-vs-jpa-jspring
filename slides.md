@@ -1,5 +1,5 @@
 ---
-theme: seriph
+theme: default
 title: "The Persistence Heavyweight Championship: jOOQ vs JPA"
 background: /boxers.png
 class: text-center
@@ -10,7 +10,7 @@ transition: slide-left
 colorSchema: dark
 download: true
 aspectRatio: 16/9
-canvasWidth: 980
+canvasWidth: 950
 highlighter: shiki
 addons:
   - "@slidev-polls/component"
@@ -20,17 +20,22 @@ pollServer: https://polls.asm0dey.site
 # The Persistence Heavyweight<br/>Championship:<br/>jOOQ vs JPA
 
 <div class="mt-12 grid grid-cols-2 gap-8 text-lg opacity-90">
-  <div>Pasha Finkelshteyn</div>
-  <div>Catherine Edelveis</div>
+  <div>
+    Pasha Finkelshteyn<br/>
+    <span><logos-twitter/>asm0di0</span>
+  </div>
+  <div>
+    Catherine Edelveis<br/>
+    <span><logos-twitter/>cat_edelveis</span>
+  </div>
 </div>
-
 
 ---
 layout: two-cols
 class: text-2xl
 ---
 
-## <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> corner
+## jOOQ corner
 
 <v-click>
 
@@ -40,7 +45,7 @@ SQL is the **only thing** you need
 
 ::right::
 
-## <span class="text-amber-400">JPA</span> corner
+## <span>JPA</span> corner
 
 <v-click>
 
@@ -48,9 +53,8 @@ Usually, you **don't need to know SQL**
 
 </v-click>
 
-
 ---
-layout: center
+layout: statement
 class: text-center
 ---
 
@@ -59,7 +63,6 @@ class: text-center
 <div class="mt-8 text-3xl font-bold tracking-wider">
   WE ARE FIGHTING FOR YOUR FUTURE
 </div>
-
 
 ---
 layout: section
@@ -71,6 +74,8 @@ class: text-center
 ## Speed (and Ease) of Development
 
 ---
+
+<JpaLogo />
 
 # JPA — write domain models
 
@@ -97,6 +102,8 @@ public class Supplier {
 
 ---
 
+<JpaLogo />
+
 # JPA — repository + service
 
 ```java {1-2|4-9}
@@ -118,6 +125,8 @@ Schema generation, SQL generation and execution, DB connection, fetching and map
 
 ---
 
+<JpaLogo />
+
 # JPA — derived queries
 
 ```java {3}
@@ -133,7 +142,9 @@ Queries derived from method names
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — active record
+<JooqLogo />
+
+# jOOQ — active record
 
 ```java {1-2|3|4}
 AuthorRecord author =
@@ -142,10 +153,11 @@ AuthorRecord author =
 author.store();
 ```
 
-
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — typed DSL query
+<JooqLogo />
+
+# jOOQ — typed DSL query
 
 ```java {all|3|4|5|6}
 public List<ProductRecord> findBySupplier(Long supplierId) {
@@ -156,7 +168,6 @@ public List<ProductRecord> findBySupplier(Long supplierId) {
     .fetchInto(ProductRecord.class);
 }
 ```
-
 
 ---
 layout: center
@@ -180,17 +191,39 @@ class: text-center
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — generate everything from DB
+<JooqLogo />
+
+# jOOQ — generate everything from DB
 
 - `PRODUCT` — holds `PRODUCT.NAME`, `PRODUCT.ID` etc.
 - `ProductRecord` — fetch/insert/update into DB
-- `ProductDao` — CRUD without SQL <span class="opacity-60">(optional)</span>
-- `Product` — POJO <span class="opacity-60">(optional)</span>
-- `IProduct` — interface implemented by them all <span class="opacity-60">(optional)</span>
+
+<div class="flex items-stretch gap-3">
+
+<div>
+
+- `ProductDao` — CRUD without SQL
+- `Product` — POJO
+- `IProduct` — interface implemented by them all
+
+</div>
+
+<div v-click class="flex items-center gap-3 opacity-80">
+  <svg viewBox="0 0 16 100" preserveAspectRatio="none" class="w-4 self-stretch">
+    <path d="M4,2 Q8,2 8,10 L8,42 Q8,50 14,50 Q8,50 8,58 L8,90 Q8,98 4,98"
+      fill="none" stroke="currentColor" stroke-width="1.5"
+      vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  <div class="text-2xl">optional</div>
+</div>
+
+</div>
 
 ---
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ codegen plugin
+<JooqLogo />
+
+# jOOQ codegen plugin
 
 ```xml {2-4|7-11}
 <plugin>
@@ -209,6 +242,8 @@ class: text-center
 ```
 
 ---
+
+<JooqLogo />
 
 # <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ codegen — DB config
 
@@ -230,6 +265,8 @@ class: text-center
 
 ---
 
+<JpaLogo />
+
 # JPA — Hibernate Processor
 
 - Generates JPA **static metamodel**
@@ -237,6 +274,8 @@ class: text-center
 - Type-safe everything: Criteria queries, entity graphs, dynamic sorting/filtering
 
 ---
+
+<JpaLogo />
 
 # JPA — annotation processor setup
 
@@ -260,6 +299,8 @@ class: text-center
 
 ---
 
+<JpaLogo />
+
 # JPA — generated static metamodel
 
 ```java
@@ -277,9 +318,11 @@ public abstract class Product_ {
 
 ---
 
+<JpaLogo />
+
 # JPA — Criteria with metamodel
 
-```java {6-7}
+```java {all|2|3|5|6-7|9}
 public List<Product> findByName(String name) {
     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
     CriteriaQuery<Product> cq = cb.createQuery(Product.class);
@@ -292,12 +335,13 @@ public List<Product> findByName(String name) {
 }
 ```
 
-
 ---
+
+<JpaLogo />
 
 # JPA — Dynamic Queries with Criteria API
 
-```java
+```java {all|6-8}
 public List<Product> searchProducts(String supplierName,
                                     String categoryName,
                                     int offset,
@@ -310,9 +354,11 @@ public List<Product> searchProducts(String supplierName,
 
 ---
 
+<JpaLogo />
+
 # JPA — Build predicates
 
-```java {1|3-7}
+```java {1|3-7|9-12}
 Predicate predicate = cb.conjunction();
 
 if (supplierName != null && !supplierName.isBlank()) {
@@ -329,6 +375,8 @@ if (categoryName != null && !categoryName.isBlank()) {
 ```
 
 ---
+
+<JpaLogo />
 
 # JPA — Apply predicate
 
@@ -347,6 +395,8 @@ return entityManager.createQuery(cq)
 
 ---
 
+<JpaLogo />
+
 # JPA — Query Validation
 
 ```java {all}
@@ -356,7 +406,9 @@ return entityManager.createQuery(cq)
 )
 ```
 
-```text {all|5-6}
+
+
+```text {hide|all|5-6}
 [INFO] -------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] -------------------------------------------------
@@ -365,9 +417,9 @@ return entityManager.createQuery(cq)
         Could not resolve attribute 'noSuchField' of 'CustomerOrder'
 ```
 
-
-
 ---
+
+<JooqLogo />
 
 # <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — typed join query
 
@@ -385,10 +437,12 @@ db
 
 ---
 
+<JooqLogo />
+
 # <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> Implicit JOIN
 
-```java {2|3}
-dsl
+```java {2|3|4-7}
+d
   .selectFrom(PRODUCT)
   .where(PRODUCT.supplier().NAME.equalIgnoreCase(supplierName))
   .orderBy(PRODUCT.NAME.desc())
@@ -396,7 +450,6 @@ dsl
   .offset(offset)
   .fetchInto(Product.class)
 ```
-
 
 ---
 layout: center
@@ -419,21 +472,21 @@ class: text-center
 ## N+1 Management
 
 ---
-layout: center
+layout: statement
 class: text-center
 ---
 
-# N+1
+# SELECT that performs a **separate SQL select** to load the data is generally termed
 
-<div class="text-2xl mt-4 max-w-2xl">
 
-SELECT that performs a **separate SQL select** to load the data is generally termed N+1
 
-</div>
+<Blackhole class="mt-12" />
 
 ---
 
 # N+1 = Fetch Strategy Problem
+
+<JpaLogo/>
 
 ```java
 for (Product product : products) {
@@ -444,6 +497,8 @@ for (Product product : products) {
 
 ---
 
+<JpaLogo />
+
 # JPA — guardrails
 
 - `FetchType.LAZY` explicitly for all associations
@@ -451,6 +506,8 @@ for (Product product : products) {
 - `@BatchSize` annotation for batched fetching
 
 ---
+
+<JpaLogo />
 
 # JPA — Fetch with Criteria
 
@@ -470,11 +527,10 @@ layout: center
 class: text-center
 ---
 
-# jOOQ verdict
-
+<JooqLogo />
 
 <div class="relative inline-block">
-  <img src="./problems.png" class="max-h-[70vh]" />
+  <img src="./problems.png" class="w-[830px] max-w-none" />
 
 <img
 v-click
@@ -482,7 +538,6 @@ src="./non1.jpg"
 class="absolute top-0 left-0 z-10 w-full h-full object-contain"
 />
 </div>
-
 
 ---
 layout: center
@@ -517,6 +572,8 @@ class: text-center
 
 ---
 
+<JpaLogo />
+
 # JPA — Request payload
 
 ```java
@@ -531,6 +588,8 @@ public record OrderEditRequest(
 ```
 
 ---
+
+<JpaLogo />
 
 # JPA — revise order
 
@@ -550,6 +609,8 @@ public void reviseOrder(Long orderId, OrderEditRequest request) {
 
 ---
 
+<JpaLogo />
+
 # JPA — remove items
 
 ```java {all|7}
@@ -564,6 +625,8 @@ for (String productUpi : productUpisToRemove) {
 ```
 
 ---
+
+<JpaLogo />
 
 # JPA — add items
 
@@ -582,6 +645,8 @@ for (Map.Entry<Long, Integer> entry : newProducts.entrySet()) {
 ```
 
 ---
+
+<JpaLogo />
 
 # JPA — change quantity
 
@@ -603,6 +668,8 @@ for (Map.Entry<String, Integer> entry : quantityUpdates.entrySet()) {
 ```
 
 ---
+
+<JpaLogo />
 
 # JPA — coupon + recalc
 
@@ -626,6 +693,8 @@ If something changes in the DB → **Optimistic locking via `@Version`**
 
 ---
 
+<JooqLogo />
+
 # jOOQ — update address
 
 ```java {all|3-9|10-12}
@@ -646,9 +715,11 @@ public void reviseOrder(Long orderId, OrderEditRequest request) {
 
 ---
 
+<JooqLogo />
+
 # jOOQ — remove items by UPI
 
-```java
+```java {all|2-4|6-10}
 // 3. Remove items by UPI
 List<String> upisToRemove = request.productUpisToRemove() == null
         ? List.of()
@@ -664,9 +735,11 @@ if (!upisToRemove.isEmpty()) {
 
 ---
 
+<JooqLogo />
+
 # jOOQ — insert new items
 
-```java
+```java {all|2-4|6-10|12-15}
 // 4. Insert new items
 Map<Long, Integer> newProducts = request.newProductIdsWithQuantities() == null
     ? Map.of()
@@ -687,9 +760,11 @@ if (!newProducts.isEmpty()) {
 
 ---
 
+<JooqLogo />
+
 # jOOQ — update quantities
 
-```java
+```java {all|1|2|2-5|7|7-8|9-11}
 if (!upisToUpdate.isEmpty()) {
     var quantityCase = DSL.case_(ORDER_ITEM.PRODUCT_UPI);
     for (var entry : upisToUpdate) {
@@ -706,6 +781,8 @@ if (!upisToUpdate.isEmpty()) {
 ```
 
 ---
+
+<JooqLogo />
 
 # jOOQ — delete + update loops
 
@@ -727,6 +804,8 @@ for (var entry : upisToUpdate) {
 ```
 
 ---
+
+<JooqLogo />
 
 # jOOQ — replace coupon
 
@@ -769,6 +848,8 @@ class: text-center
 
 ---
 
+<JpaLogo />
+
 # JPA — Performance features
 
 - Caching
@@ -786,18 +867,44 @@ class: text-center
 
 ---
 
+<JooqLogo/>
+
 # jOOQ — query cost
 
 - Takes some time to construct jOOQ queries
 - Takes some time to render SQL strings
 - Takes some time to bind values to PreparedStatement
 
-<div class="mt-8 text-xl opacity-90">
-  → Use connection pooling
-</div>
+<svg v-click="1" class="absolute inset-0 w-full h-full pointer-events-none z-20" viewBox="0 0 950 534">
+  <defs>
+    <marker id="ah-caching" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#fbbf24" />
+    </marker>
+  </defs>
+  <ellipse cx="775" cy="100" rx="160" ry="50" fill="none" stroke="#fbbf24" stroke-width="3.5" />
+  <text x="775" y="93" text-anchor="middle" fill="#fbbf24" style="font-size:26px;font-weight:700">
+    <tspan x="775" dy="0">You can implement</tspan>
+    <tspan x="775" dy="30">caching</tspan>
+  </text>
+  <path d="M625,117 Q520,142 437,111" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-caching)" />
+  <path d="M695,143 Q560,180 401,143" fill="none" stroke="#fbbf24" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-caching)" />
+</svg>
 
-<img v-click src="./efishenci.png" class="w-1/2 mx-auto" />
+<svg v-click="2" class="absolute inset-0 w-full h-full pointer-events-none z-20" viewBox="0 0 950 534">
+  <defs>
+    <marker id="ah-pool" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#4ade80" />
+    </marker>
+  </defs>
+  <ellipse cx="695" cy="370" rx="165" ry="54" fill="none" stroke="#4ade80" stroke-width="3.5" />
+  <text x="695" y="363" text-anchor="middle" fill="#4ade80" style="font-size:26px;font-weight:700">
+    <tspan x="695" dy="0">Use connection</tspan>
+    <tspan x="695" dy="30">pooling</tspan>
+  </text>
+  <path d="M589,329 Q578,232 516,177" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-pool)" />
+</svg>
 
+<img v-click="3" src="./efishenci.png" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3/5 z-50 shadow-2xl" />
 
 ---
 layout: center
@@ -821,6 +928,8 @@ class: text-center
 
 ---
 
+<JpaLogo />
+
 # JPA — Domain-first codegen + compile-time checks
 
 - Static metamodel is **refactor-safe** against domain changes
@@ -829,6 +938,8 @@ class: text-center
 - DB migration tooling, schema diff checks for DB/entities mismatch
 
 ---
+
+<JooqLogo />
 
 ## jOOQ
 
@@ -860,6 +971,8 @@ class: text-center
 
 ---
 
+<JooqLogo />
+
 # jOOQ Editions
 
 | Edition | DBs | Price |
@@ -869,9 +982,11 @@ class: text-center
 | **Professional** ⭐ | + Oracle, SQL Server, MS Access | 399 € |
 | **Enterprise** | enterprise DBs | 799 € |
 
-<div class="mt-4 text-sm opacity-80">per floating developer workstation/year, incl. maintenance & support</div>
+<div class="mt-4 text-sm opacity-80">* per floating developer workstation/year, incl. maintenance & support</div>
 
 ---
+
+<JpaLogo />
 
 # JPA — Project Maturity
 
@@ -886,6 +1001,8 @@ class: text-center
 <div class="mt-2 opacity-80">Used by 466k projects · 627 contributors</div>
 
 ---
+
+<JpaLogo />
 
 # JPA — Licensing and Support
 
