@@ -8,7 +8,7 @@ drawings:
   persist: false
 transition: slide-left
 colorSchema: dark
-download: true
+download: false
 aspectRatio: 16/9
 canvasWidth: 950
 highlighter: shiki
@@ -520,7 +520,7 @@ cq.select(order)
   .where(cb.equal(order.get(CustomerOrder_.id), orderId));
 ```
 
-<img v-click src="./lamba.png" class="w-1/2 mx-auto" />
+<Asset v-click src="lamba.png" class="w-1/2 mx-auto" />
 
 ---
 layout: center
@@ -530,11 +530,11 @@ class: text-center
 <JooqLogo />
 
 <div class="relative inline-block">
-  <img src="./problems.png" class="w-[830px] max-w-none" />
+  <Asset src="problems.png" class="w-[830px] max-w-none" />
 
-<img
+<Asset
 v-click
-src="./non1.jpg"
+src="non1.jpg"
 class="absolute top-0 left-0 z-10 w-full h-full object-contain"
 />
 </div>
@@ -862,7 +862,7 @@ class: text-center
 
 </v-click>
 
-<img v-click="2" src="./accident.png" class="w-1/2 mx-auto" />
+<Asset v-click="2" src="accident.png" class="w-1/2 mx-auto" />
 
 
 ---
@@ -904,7 +904,7 @@ class: text-center
   <path d="M589,329 Q578,232 516,177" fill="none" stroke="#4ade80" stroke-width="3" stroke-linecap="round" marker-end="url(#ah-pool)" />
 </svg>
 
-<img v-click="3" src="./efishenci.png" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3/5 z-50 shadow-2xl" />
+<Asset v-click="3" src="efishenci.png" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3/5 z-50 shadow-2xl" />
 
 ---
 layout: center
@@ -947,7 +947,7 @@ Change your DB incompatibly and see how your application doesn’t even compile.
 Because it **shouldn’t**.<br/>
 And you don’t need plugins for it!
 
-<img v-click src="./winnie.png" class="w-1/2 mx-auto" />
+<Asset v-click src="winnie.png" class="w-1/2 mx-auto" />
 
 ---
 layout: center
@@ -1034,7 +1034,7 @@ class: text-center
 </div>
 
 
-<img src="./cyberjar.png" class="w-1/2 mx-auto" />
+<Asset src="cyberjar.png" class="w-1/2 mx-auto" />
 
 ---
 
