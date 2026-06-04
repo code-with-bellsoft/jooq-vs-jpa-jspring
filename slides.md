@@ -380,7 +380,7 @@ if (categoryName != null && !categoryName.isBlank()) {
 
 # JPA — Apply predicate
 
-```java {3}
+```java {all|3|7-8}
 cq.select(product)
         .distinct(true)
         .where(predicate)
@@ -421,7 +421,7 @@ return entityManager.createQuery(cq)
 
 <JooqLogo />
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> jOOQ — typed join query
+# jOOQ — typed join query
 
 ```java {all|2|3|4|5|6-8}
 db
@@ -439,7 +439,7 @@ db
 
 <JooqLogo />
 
-# <span class="font-mono font-bold text-white bg-black px-2 py-0.5 rounded">jOOQ</span> Implicit JOIN
+# Implicit JOIN
 
 ```java {2|3|4-7}
 d
